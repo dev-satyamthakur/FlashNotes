@@ -1,4 +1,4 @@
-package com.satyamthakur.flashnotes
+package com.satyamthakur.flashnotes.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -22,25 +22,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FlashNotesTheme {
-        Greeting("Android")
     }
 }
