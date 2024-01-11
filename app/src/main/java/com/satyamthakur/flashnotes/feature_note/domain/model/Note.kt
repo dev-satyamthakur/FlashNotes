@@ -6,6 +6,7 @@ import com.satyamthakur.flashnotes.ui.theme.Green
 import com.satyamthakur.flashnotes.ui.theme.Orange
 import com.satyamthakur.flashnotes.ui.theme.Peach
 import com.satyamthakur.flashnotes.ui.theme.Yellow
+import java.lang.Exception
 
 @Entity
 data class Note(
@@ -20,3 +21,5 @@ data class Note(
         val noteColors = listOf(Yellow, Orange, Peach, Green)
     }
 }
+
+class InvalidNoteException(message: String): Exception(message)
