@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,14 +17,27 @@ class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases
 ): ViewModel() {
 
-    private val _noteTitle = MutableStateFlow(NoteTextFieldState())
+    private val _noteTitle = MutableStateFlow(NoteTextFieldState(
+        hint = "Enter Title ..."
+    ))
     val noteTitle: StateFlow<NoteTextFieldState> = _noteTitle
 
-    private val _noteContent = MutableStateFlow(NoteTextFieldState())
+    private val _noteContent = MutableStateFlow(NoteTextFieldState(
+        hint = "Enter the content ... "
+    ))
     val noteContent: StateFlow<NoteTextFieldState> = _noteContent
 
     private val _noteColor = MutableStateFlow<Int>(Note.noteColors.random().toArgb())
     val noteColor: StateFlow<Int> = _noteColor
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
+    fun onEvent()
+
+    sealed class UiEvent {
+        data class ShowSnackbar(val message: String): UiEvent()
+        object saveNote: UiEvent()
+    }
 
 }
