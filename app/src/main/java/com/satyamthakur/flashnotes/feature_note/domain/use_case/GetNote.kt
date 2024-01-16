@@ -6,7 +6,7 @@ import com.satyamthakur.flashnotes.feature_note.domain.repository.NoteRepository
 class GetNote(
     private val repository: NoteRepository
 ) {
-    suspend fun invoke(id: Int): Note? {
+    suspend operator fun invoke(id: Int): Note? {
         return repository.getNoteById(id)
     }
 }
